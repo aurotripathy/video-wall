@@ -74,11 +74,15 @@ class Predict():
 def main():
     predict = Predict()
 
-    for video_id in predict.get_all_video_ids():
+    print('Start!')
+    for i, video_id in enumerate(predict.get_all_video_ids()):
         predicted = predict.predict_video_id(video_id)
         # print('Predicted', ':', predicted)
+        if i%10:
+            print(i, 'done')
         if len(predicted) == 0:
             print('ERROR, Empty prediction for video ID', video_id)
+    print('Done!')
 
 if __name__ == '__main__':
     main()
