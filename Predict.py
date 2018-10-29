@@ -73,13 +73,14 @@ class Predict():
 # Unit test
 def main():
     predict = Predict()
-
+    video_ids = predict.get_all_video_ids()
+    len_video_ids = len(video_ids)
     print('Start!')
-    for i, video_id in enumerate(predict.get_all_video_ids()):
+    for i, video_id in enumerate(video_ids):
         predicted = predict.predict_video_id(video_id)
         # print('Predicted', ':', predicted)
-        if i%10:
-            print(i, 'done')
+        if i%100 == 0:
+            print(i, 'of', len_video_ids, 'done')
         if len(predicted) == 0:
             print('ERROR, Empty prediction for video ID', video_id)
     print('Done!')
