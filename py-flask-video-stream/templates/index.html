@@ -1,0 +1,37 @@
+<html>
+  <head>
+
+    <link type="text/css" rel="stylesheet"
+	  href="{{ url_for('static', filename='style.css') }}" >
+    
+    <title>SC 18 Vid Classify</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='showresults.js') }}"></script>
+    
+  </head>
+  <body style="width: 1500px">
+    <h1>Video Activity Wall</h1>
+    
+    <div id="controls">
+      <button id="show" type="Refresh">Refresh Activities</button>
+      <button id="classify_all" type="Refresh">Label Activities</button>
+      <span id="version"><a href="network.html" target="_blank">See Neural Net</a>  Version: 0.0 </span>
+    </div>
+
+    <div id="container">
+	
+      {% for i in range(12) %}
+      <div>
+	<video width="320" height="240" controls autoplay muted loop>
+	  <source  src="{{ video }}/{{ id_list[i] }}" type="video/webm" >
+	</video>
+	<!-- <p class="id">The ID is </p> -->
+        <p class="label{{i}}">Activity: </p>
+      </div>
+      {% endfor %}
+      
+
+    </div>
+    
+</html>
