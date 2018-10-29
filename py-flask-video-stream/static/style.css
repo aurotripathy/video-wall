@@ -1,0 +1,18 @@
+
+
+      #container {
+      display: flex;                  /* establish flex container */
+      flex-direction: row;            /* default value; can be omitted */
+      flex-wrap: wrap;              /* default value; can be omitted */
+      justify-content: space-between; /* switched from default (flex-start, see below) */
+      background-color: white;
+      }
+      #container > div {
+      width: 320px;
+      height: 280x;
+      border: 2px dashed grey;
+      }
+
+      #version {
+	  float: right
+      }
