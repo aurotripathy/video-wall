@@ -46,6 +46,7 @@ class Predict():
             self.all_video_ids.remove(item)
 
         self.showing_ids = []
+        print('Ready to accept ReST calls!')
 
     def get_videos_ids(self, count=12):
         # pick some at random to display
