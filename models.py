@@ -1,40 +1,26 @@
 """
 A collection of models we'll use to attempt to classify videos.
 """
-try:
+import tensorflow as tf
+if tf.__version__ > '1.3.0':
     from keras.layers import Dense, Flatten, Dropout, ZeroPadding3D
-except ImportError:
-    from tensorflow.contrib.keras.api.keras.layers import Dense, Flatten, Dropout, ZeroPadding3D
-
-try:
     from keras.layers.recurrent import LSTM
-    # from tensorflow.contrib.keras.api.keras.layers.recurrent import LSTM
-except ImportError:
-    from tensorflow.contrib.keras.python.keras.layers.recurrent import LSTM
-
-try:
     from keras.models import Sequential, load_model
-except ImportError:
-    from tensorflow.contrib.keras.python.keras.models import Sequential, load_model
-
-try:
-    from keras.optimizers import Adam, RMSprop
-except ImportError:
-    from tensorflow.contrib.keras.api.keras.optimizers import Adam, RMSprop
-
-try:
+    from keras.optimizers import Adam
     from keras.layers.wrappers import TimeDistributed
-    # from tensorflow.contrib.keras.api.keras.layers.wrappers import TimeDistributed
-except ImportError:
-    from tensorflow.contrib.keras.python.keras.layers.wrappers import TimeDistributed
-
-try:
     from keras.layers.convolutional import (Conv2D, MaxPooling3D, Conv3D, MaxPooling2D)
-except ImportError:
-    from tensorflow.contrib.keras.api.keras.layers.convolutional import (Conv2D, MaxPooling3D, Conv2D, MaxPooling2D)
+else:
+    from tensorflow.contrib.keras.api.keras.layers import Dense, Flatten, Dropout, ZeroPadding3D
+    from tensorflow.contrib.keras.python.keras.layers.recurrent import LSTM
+    from tensorflow.contrib.keras.python.keras.models import Sequential, load_model
+    from tensorflow.contrib.keras.api.keras.optimizers import Adam
+    from tensorflow.contrib.keras.python.keras.layers.wrappers import TimeDistributed
+    from keras.layers.convolutional import (Conv2D, MaxPooling3D, Conv3D, MaxPooling2D)
+
 
 from collections import deque
 import sys
+
 
 class ResearchModels():
     def __init__(self, nb_classes, model, seq_length,
