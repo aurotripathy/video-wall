@@ -2,21 +2,20 @@
 A collection of models we'll use to attempt to classify videos.
 """
 import tensorflow as tf
-if tf.__version__ > '1.3.0':
-    from keras.layers import Dense, Flatten, Dropout, ZeroPadding3D
-    from keras.layers.recurrent import LSTM
-    from keras.models import Sequential, load_model
-    from keras.optimizers import Adam
-    from keras.layers.wrappers import TimeDistributed
-    from keras.layers.convolutional import (Conv2D, MaxPooling3D, Conv3D, MaxPooling2D)
-else:
+if tf.__version__ == '1.3.0':
     from tensorflow.contrib.keras.api.keras.layers import Dense, Flatten, Dropout, ZeroPadding3D
     from tensorflow.contrib.keras.python.keras.layers.recurrent import LSTM
     from tensorflow.contrib.keras.python.keras.models import Sequential, load_model
     from tensorflow.contrib.keras.api.keras.optimizers import Adam
     from tensorflow.contrib.keras.python.keras.layers.wrappers import TimeDistributed
     from keras.layers.convolutional import (Conv2D, MaxPooling3D, Conv3D, MaxPooling2D)
-
+else:
+    from keras.layers import Dense, Flatten, Dropout, ZeroPadding3D
+    from keras.layers.recurrent import LSTM
+    from keras.models import Sequential, load_model
+    from keras.optimizers import Adam
+    from keras.layers.wrappers import TimeDistributed
+    from keras.layers.convolutional import (Conv2D, MaxPooling3D, Conv3D, MaxPooling2D)
 
 from collections import deque
 import sys
