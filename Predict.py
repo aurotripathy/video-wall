@@ -1,9 +1,10 @@
 """
 Predict on extracted features
 """
-try:
+import tensorflow as tf
+if tf.__version__ > '1.3.0':
     from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
-except ImportError:
+else:
     from tensorflow.contrib.keras.python.keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
     
 from models import ResearchModels
@@ -12,9 +13,9 @@ import time
 import os.path
 from pudb import set_trace
 
-try:
+if tf.__version__ > '1.3.0':
     from keras.models import load_model
-except:
+else:
     from tensorflow.contrib.keras.python.keras.models import load_model
 import numpy as np
 import glob
