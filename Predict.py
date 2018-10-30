@@ -1,15 +1,21 @@
 """
 Predict on extracted features
 """
-# from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
-from tensorflow.contrib.keras.python.keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
+try:
+    from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
+except ImportError:
+    from tensorflow.contrib.keras.python.keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
+    
 from models import ResearchModels
 from data import DataSet
 import time
 import os.path
 from pudb import set_trace
-# from keras.models import load_model
-from tensorflow.contrib.keras.python.keras.models import load_model
+
+try:
+    from keras.models import load_model
+except:
+    from tensorflow.contrib.keras.python.keras.models import load_model
 import numpy as np
 import glob
 import random
