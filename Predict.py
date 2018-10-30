@@ -2,10 +2,10 @@
 Predict on extracted features
 """
 import tensorflow as tf
-if tf.__version__ > '1.3.0':
-    from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
-else:
+if tf.__version__ == '1.3.0':
     from tensorflow.contrib.keras.python.keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
+else:
+    from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping, CSVLogger
     
 from models import ResearchModels
 from data import DataSet
@@ -13,10 +13,11 @@ import time
 import os.path
 from pudb import set_trace
 
-if tf.__version__ > '1.3.0':
-    from keras.models import load_model
-else:
+if tf.__version__ == '1.3.0':
     from tensorflow.contrib.keras.python.keras.models import load_model
+else:
+    from keras.models import load_model
+    
 import numpy as np
 import glob
 import random
