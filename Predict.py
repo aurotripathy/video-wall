@@ -79,15 +79,21 @@ class Predict():
 
     def get_all_video_ids(self):
         return self.all_video_ids
+
+    def get_GT_from_id(self, video_id):
+        return video_id.split('_')[1]  # sample format, v_RopeClimbing_g01_c01
+
+    
 # Unit test
 def main():
     predict = Predict()
-    video_ids = predict.get_all_video_ids()
+    video_ids = predict.get_videos_ids()
+    activities_GT = [predict.get_GT_from_id(video_id) for video_id in video_ids]
     len_video_ids = len(video_ids)
     print('Start!')
     for i, video_id in enumerate(video_ids):
         predicted = predict.predict_video_id(video_id)
-        # print('Predicted', ':', predicted)
+        print('Ground Truth', activities_GT[i], 'Predicted', ':', predicted)
         if i%100 == 0:
             print(i, 'of', len_video_ids, 'done')
         if len(predicted) == 0:
