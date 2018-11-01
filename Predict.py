@@ -48,10 +48,17 @@ class Predict():
         self.rm = ResearchModels(len(self.data.classes), self.model_type, self.seq_length, filepath)
 
         # read the video IDs
-        self.all_video_ids = sorted([os.path.basename(name).split('.webm')[0] for name in glob.glob('../*/*/*.webm')])
+        # self.all_video_ids = sorted([os.path.basename(name).split('.webm')[0] for name in glob.glob('../*/*/*.webm')])
+        self.all_video_ids = sorted([os.path.basename(name).split('.webm')[0] for name in glob.glob('../*/videos/*.webm')])
         remove_list = read_remove_list()
-        for item in remove_list:
-            self.all_video_ids.remove(item)
+
+        # Not needed any more
+        # for item in remove_list:
+        #     try:
+        #         self.all_video_ids.remove(item)
+        #     except:
+        #         print(item, 'not in list')
+
 
         self.showing_ids = []
         print('Ready to accept ReST calls!')
@@ -87,17 +94,21 @@ class Predict():
 # Unit test
 def main():
     predict = Predict()
-    video_ids = predict.get_videos_ids()
+    video_ids = predict.get_all_video_ids()
     activities_GT = [predict.get_GT_from_id(video_id) for video_id in video_ids]
     len_video_ids = len(video_ids)
     print('Start!')
-    for i, video_id in enumerate(video_ids):
-        predicted = predict.predict_video_id(video_id)
-        print('Ground Truth', activities_GT[i], 'Predicted', ':', predicted)
-        if i%100 == 0:
-            print(i, 'of', len_video_ids, 'done')
-        if len(predicted) == 0:
-            print('ERROR, Empty prediction for video ID', video_id)
+    with open('results.txt', 'w') as f:
+        for i, video_id in enumerate(video_ids):
+            predicted = predict.predict_video_id(video_id)
+            correct_wrong = 'correct' if activities_GT[i] == predicted[0].split(':')[0] else 'wrong'
+            format_str = '{} {} Ground-Truth {} Predicted : {}{}'
+            f.write(format_str.format(video_id,
+                                      correct_wrong, activities_GT[i], predicted, os.linesep))
+            if i%100 == 0:
+                print(i, 'of', len_video_ids, 'done')
+            if len(predicted) == 0:
+                print('ERROR, Empty prediction for video ID', video_id)
     print('Done!')
 
 if __name__ == '__main__':
