@@ -134,6 +134,28 @@ def classify():
     return jsonify(predictions)
 
 
+@app.route('/loop/')
+def show_classify():  # in a loop
+    LOG.debug('Showing videos and classifying at the same time')
+    id_list = predict.get_videos_ids(VID_COUNT)
+    id_list = [id + '.webm' for id in id_list]  # append .webm
+    # id_list = [i for i in range(VID_COUNT)]
+    # random.shuffle(id_list)
+    predictions = predict.predict_all_showing_ids()  # contains id and label
+    predictions = [prediction['label'] for prediction in predictions]  # just label
+    predictions = [''.join(prediction) for prediction in predictions]  # as string
+    print(predictions)
+        
+    LOG.debug(predictions)
+    
+    response = render_template(
+        'auto_run_index.html', 
+        video=VIDEO_PATH,
+        id_list=id_list,
+        predictions=predictions,
+    )
+    return response
+
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)
@@ -144,5 +166,3 @@ if __name__ == '__main__':
 
     # Standalone
     app.run(host=HOST, port=9000, debug=True)
-
-
