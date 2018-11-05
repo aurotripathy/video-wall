@@ -37,8 +37,8 @@ class Predict():
         self.seq_length = seq_length
         self.data_type = data_type
         filepath=os.path.join('..', 'data', 'checkpoints', model_type + '-' + data_type + '.{:03d}-{:.3f}.hdf5'.format(epoch, val_loss))
-        print('Loading the model:', filepath)
-        model = load_model(filepath)
+        # print('Loading the model:', filepath)
+        # model = load_model(filepath)
 
         # Get the data and process it.
         self.data = DataSet(seq_length=seq_length, class_limit=None)
