@@ -38,24 +38,30 @@
     a { color: white;}
   </style>
   
-  <body bgcolor=black style="width: 1600px">
+  <body bgcolor=black style="width: 1800px">
     <h1>Video Activity Wall</h1>
+
+    <div id="sidebar" style="width: 300px">
+      <img id="logo_amd" width="70%" src="/static/images/53863A_AMD_E_Wh_RGB.jpg" alt="AMD Logo">
+      <img id="logo_epyc" width="70%" src="/static/images/18104487-A_AMD_EPYC_3D_LOGO_8K.jpg" alt="AMD Logo">
+      <img id="logo_instinct" width="80%" src="/static/images/1897819-A_AMDRadeonInstinct_RGB.png" alt="AMD Logo">
+    </div>
     
-    <div id="controls">
+    <div id="controls" style="width: 1500px">
       <button class="button" id="stop_loop" type="stop_loop">Stop Loop</button>
       <button class="button" id="start_loop" type="start_loop">Start Loop</button>
       <span id="version">-<a href="network.html" target="_blank">See Neural Net</a> </span>
       <span style="color: white" id="version"> Trained on <a href="http://crcv.ucf.edu/data/UCF101.php">UCF101 - Action Recognition DataSet</a></span>
     </div>
 
-    <div id="container">
+    <div id="container" style="width: 1500px">
 	
       {% for i in range(12) %}
-      <div>
+      <div id="videos">
 	<video width="320" height="240" controls autoplay muted loop>
 	  <source  src="{{ video }}/{{ id_list[i] }}" type="video/webm" >
 	</video>
-	<!-- <p class="id">The ID is </p> -->
+
         <p class="label{{i}}">Activity: {{ predictions[i] }}</p>
 
       </div>
