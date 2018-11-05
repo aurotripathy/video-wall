@@ -7,15 +7,33 @@
       justify-content: space-between; /* switched from default (flex-start, see below) */
       background-color: "#A9A9A9";
       }
-      #container > div {
+      #container > #videos {
       width: 320px;
       height: 280x;
       border: 4px grey;
       border-style: inset;
       }
 
-      #version {
+      #controls #version {
 	  float: right
+      }
+
+      #sidebar{
+	  float: right;
+      }
+
+      #logo_amd {
+	  margin-top: 100px;
+	  margin-left: 50px;
+      }
+      #logo_epyc {
+	  margin-top: 300px;	  
+	  margin-left: 50px;
+      }
+      #logo_instinct {
+	  filter: invert(100%);
+	  margin-top: 300px;
+	  margin-left: 50px;
       }
 
 
