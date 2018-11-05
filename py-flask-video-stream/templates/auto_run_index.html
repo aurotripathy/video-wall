@@ -1,0 +1,67 @@
+<html>
+  <head>
+
+    <link type="text/css" rel="stylesheet"
+	  href="{{ url_for('static', filename='style.css') }}" >
+    
+    <title>SC 18 Vid Classify</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='auto_run_showresults.js') }}"></script>
+    
+  </head>
+
+  <style>
+    h1 {
+    color: white;
+    font-family: verdana;
+    font-size: 200%;
+    margin-bottom: 0px;
+    }
+    button {
+    background-color: #303030;
+    color: white;
+    margin: 10px;
+    border: none;
+    font-size: 20px;
+    }
+    p  {
+    color: white;
+    font-family: verdana;
+    font-size: 100%;
+    }
+    span  {
+    color: black;
+    font-family: verdana;
+    font-size: 100%;
+    }
+    a { color: white;}
+  </style>
+  
+  <body bgcolor=black style="width: 1600px">
+    <h1>Video Activity Wall</h1>
+    
+    <div id="controls">
+      <button class="button" id="stop_loop" type="stop_loop">Stop Loop</button>
+      <button class="button" id="start_loop" type="start_loop">Start Loop</button>
+      <span id="version">-<a href="network.html" target="_blank">See Neural Net</a> </span>
+      <span style="color: white" id="version"> Trained on <a href="http://crcv.ucf.edu/data/UCF101.php">UCF101 - Action Recognition DataSet</a></span>
+    </div>
+
+    <div id="container">
+	
+      {% for i in range(12) %}
+      <div>
+	<video width="320" height="240" controls autoplay muted loop>
+	  <source  src="{{ video }}/{{ id_list[i] }}" type="video/webm" >
+	</video>
+	<!-- <p class="id">The ID is </p> -->
+        <p class="label{{i}}">Activity: {{ predictions[i] }}</p>
+
+      </div>
+      {% endfor %}
+      
+
+    </div>
+    
+</html>
