@@ -50,6 +50,7 @@ class Predict():
         # read the video IDs
         # self.all_video_ids = sorted([os.path.basename(name).split('.webm')[0] for name in glob.glob('../*/*/*.webm')])
         self.all_video_ids = sorted([os.path.basename(name).split('.webm')[0] for name in glob.glob('../*/videos_safe_viewing/*.webm')])
+        assert(len(self.all_video_ids) != 0)
         remove_list = read_remove_list()
 
         # Not needed any more
