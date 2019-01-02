@@ -1,0 +1,6 @@
+To invoke the server, type:
+   python3 server
+
+You'll nee the model in the data/checkpoints folder
+YOu'll also need the right video files (videos, videos_safe_viewing)
+You alos need the internediate npy files from model traning
